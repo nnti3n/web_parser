@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div style="background-color:white; margin-bottom:42px;">
+      <h1>Count Char</h1>
+      <p>Looks like you've requested information for url <%= url %>.</p>
+      <p>body length: <%= String.length(body) %></p>
+      <div>
+        <%= count %>
+      </div>
+    </div>
+    <div>
+      <%= body %>
+    </div>
+  </body>
+</html>
