@@ -13,7 +13,7 @@ defmodule Play.Router do
     map = response.body
     |> String.graphemes()
     |> Enum.reduce(%{}, fn char, acc ->
-      if String.match?(char, ~r/^[a-z]$/) do
+      if String.match?(char, ~r/[ -~]/) do
         Map.put(acc, char, (acc[char] || 0) + 1)
       else
         acc
