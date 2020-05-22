@@ -3,6 +3,7 @@ defmodule Play.Application do
   require Logger
 
   def start(_type, _args) do
+    IO.puts "PORT: #{System.get_env("PORT")}"
     children = [
       {Plug.Cowboy,
        scheme: :http, plug: Play.Router, options: [port: System.get_env("PORT") || 8080]}
