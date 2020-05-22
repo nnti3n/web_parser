@@ -4,8 +4,10 @@ defmodule Play.Application do
 
   def start(_type, _args) do
     children = [
-      {Plug.Cowboy, scheme: :http, plug: Play.Router, options: [port: 8080]}
+      {Plug.Cowboy,
+       scheme: :http, plug: Play.Router, options: [port: System.get_env("PORT") || 8080]}
     ]
+
     opts = [strategy: :one_for_one, name: Play.Supervisor]
 
     Logger.info("Starting application...")
