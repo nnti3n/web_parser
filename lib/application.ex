@@ -9,7 +9,7 @@ defmodule Play.Application do
       Plug.Cowboy.child_spec(
         scheme: :http,
         plug: Play.Router,
-        options: [port: String.to_integer(System.get_env("PORT"))]
+        options: [port: String.to_integer(System.get_env("PORT", "8080"))]
       )
     ]
 

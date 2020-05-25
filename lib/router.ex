@@ -10,7 +10,7 @@ defmodule Play.Router do
     response = HTTPoison.get!("https://#{url}")
     IO.puts String.length(response.body)
 
-    map = response.body
+    count_result = response.body
     |> String.graphemes()
     |> Enum.reduce(%{}, fn char, acc ->
       if String.match?(char, ~r/[ -~]/) do
@@ -19,12 +19,8 @@ defmodule Play.Router do
         acc
       end
     end)
-
-    count_result = map
-    |> Map.keys()
-    |> Enum.map(fn key -> "#{key}: #{map[key]}" end)
+    |> Enum.map(fn ({key, value}) -> "#{key}: #{value}" end)
     |> Enum.join(", ")
-    IO.puts count_result
 
     page_contents = template_count_char(url, count_result, response.body)
     conn |> put_resp_content_type("text/html") |> send_resp(200, page_contents)
